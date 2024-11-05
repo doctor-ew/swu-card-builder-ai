@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "star-wars-unlimited-deckbuilder"
+version = "0.1.0"
+description = "A deck builder for Star Wars Unlimited TCG"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+pymongo = "^4.10.1"
+langchain = "^0.3.7"
+langchain-community = "^0.3.5"
+langchain-openai = "^0.2.5"
+openai = "^1.53.1"
+prometheus-client = "^0.21.0"
+python-dotenv = "^1.0.1"
+pydantic = "^2.9.2"
+chromadb = "^0.5.17"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+black = "^24.10.0"
+isort = "^5.13.2"
+flake8 = "^7.1.1"
+mypy = "^1.13.0"
+pytest-cov = "^5.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start = "app.main:start"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra -q --cov=app"
